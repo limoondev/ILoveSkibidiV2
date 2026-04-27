@@ -16,7 +16,7 @@ class NotabilityImportService: ObservableObject {
         let id = UUID()
         let name: String
         let utType: UTType
-        let extension: String
+        let fileExtension: String
         let icon: String
     }
     
@@ -35,14 +35,14 @@ class NotabilityImportService: ObservableObject {
     
     private func loadSupportedFormats() {
         supportedFormats = [
-            FileFormat(name: "PDF", utType: .pdf, extension: "pdf", icon: "doc.fill"),
-            FileFormat(name: "Image PNG", utType: .png, extension: "png", icon: "photo.fill"),
-            FileFormat(name: "Image JPEG", utType: .jpeg, extension: "jpg", icon: "photo.fill"),
-            FileFormat(name: "Image TIFF", utType: .tiff, extension: "tiff", icon: "photo.fill"),
-            FileFormat(name: "Texte RTF", utType: .rtf, extension: "rtf", icon: "doc.text.fill"),
-            FileFormat(name: "Texte brut", utType: .plainText, extension: "txt", icon: "doc.text"),
-            FileFormat(name: "HTML", utType: .html, extension: "html", icon: "globe"),
-            FileFormat(name: "Markdown", utType: UTType(filenameExtension: "md") ?? .plainText, extension: "md", icon: "text.append"),
+            FileFormat(name: "PDF", utType: .pdf, fileExtension: "pdf", icon: "doc.fill"),
+            FileFormat(name: "Image PNG", utType: .png, fileExtension: "png", icon: "photo.fill"),
+            FileFormat(name: "Image JPEG", utType: .jpeg, fileExtension: "jpg", icon: "photo.fill"),
+            FileFormat(name: "Image TIFF", utType: .tiff, fileExtension: "tiff", icon: "photo.fill"),
+            FileFormat(name: "Texte RTF", utType: .rtf, fileExtension: "rtf", icon: "doc.text.fill"),
+            FileFormat(name: "Texte brut", utType: .plainText, fileExtension: "txt", icon: "doc.text"),
+            FileFormat(name: "HTML", utType: .html, fileExtension: "html", icon: "globe"),
+            FileFormat(name: "Markdown", utType: UTType(filenameExtension: "md") ?? .plainText, fileExtension: "md", icon: "text.append"),
         ]
     }
     

@@ -113,7 +113,7 @@ struct NotabilityImportView: View {
                                     Text(format.name)
                                         .font(.system(size: 11, weight: .medium, design: .rounded))
                                         .foregroundColor(.appTextPrimary)
-                                    Text(".\(format.extension)")
+                                    Text(".\(format.fileExtension)")
                                         .font(.system(size: 10, weight: .medium, design: .monospaced))
                                         .foregroundColor(.appTextSecondary)
                                 }
