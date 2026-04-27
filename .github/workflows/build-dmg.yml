@@ -1,0 +1,74 @@
+name: Build DMG
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Select Xcode
+      run: |
+        xcodebuild -version
+        xcode-select --install || true
+        sudo xcode-select --switch /Applications/Xcode_15.0.app || true
+        
+    - name: Build the project
+      run: |
+        xcodebuild -project "ILoveSkibidi V2.xcodeproj" \
+          -scheme "ILoveSkibidi V2" \
+          -configuration Release \
+          -derivedDataPath build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO \
+          clean build
+        
+    - name: Create DMG
+      run: |
+        # Créer le dossier pour l'app
+        mkdir -p dmg-content
+        
+        # Copier l'app buildée
+        if [ -d "build/Build/Products/Release/ILoveSkibidi V2.app" ]; then
+          cp -R "build/Build/Products/Release/ILoveSkibidi V2.app" dmg-content/
+        elif [ -d "build/Release/ILoveSkibidi V2.app" ]; then
+          cp -R "build/Release/ILoveSkibidi V2.app" dmg-content/
+        elif [ -d "build/Build/Products/Release/ILoveSkibidi V2.app" ]; then
+          cp -R "build/Build/Products/Release/ILoveSkibidi V2.app" dmg-content/
+        else
+          # Chercher l'app n'importe où
+          find build -name "*.app" -exec cp -R {} dmg-content/ \;
+        fi
+        
+        # Créer le DMG
+        hdiutil create -volname "ILoveSkibidi V2" \
+          -srcfolder dmg-content \
+          -ov \
+          -format UDZO \
+          "ILoveSkibidiV2-$(date +%Y%m%d-%H%M%S).dmg"
+          
+    - name: Upload DMG artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ILoveSkibidiV2-DMG
+        path: "*.dmg"
+        retention-days: 30
+        
+    - name: Create Release
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "*.dmg"
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

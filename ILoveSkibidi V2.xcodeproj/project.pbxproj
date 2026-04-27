@@ -1,0 +1,280 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10001 /* ILoveSkibidiV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10001; };
+		A10002 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10002; };
+		A10003 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10003; };
+		A10004 /* TextCorrectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10004; };
+		A10005 /* NotabilityImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10005; };
+		A10006 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10006; };
+		A10007 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10007; };
+		A10008 /* TextCorrectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10008; };
+		A10009 /* NotabilityImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10009; };
+		A10010 /* ScannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10010; };
+		A10011 /* PremiumComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10011; };
+		A10012 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10012; };
+		A10013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10013; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C10001 /* ILoveSkibidi V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ILoveSkibidi V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10001 /* ILoveSkibidiV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILoveSkibidiV2App.swift; sourceTree = "<group>"; };
+		B10002 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
+		B10003 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B10004 /* TextCorrectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCorrectionView.swift; sourceTree = "<group>"; };
+		B10005 /* NotabilityImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportView.swift; sourceTree = "<group>"; };
+		B10006 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		B10007 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B10008 /* TextCorrectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCorrectionService.swift; sourceTree = "<group>"; };
+		B10009 /* NotabilityImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportService.swift; sourceTree = "<group>"; };
+		B10010 /* ScannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerService.swift; sourceTree = "<group>"; };
+		B10011 /* PremiumComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumComponents.swift; sourceTree = "<group>"; };
+		B10012 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
+		B10013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		D10001 = {
+			isa = PBXGroup;
+			children = (
+				D10002 /* ILoveSkibidiV2 */,
+				D10010 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D10010 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C10001 /* ILoveSkibidi V2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D10002 /* ILoveSkibidiV2 */ = {
+			isa = PBXGroup;
+			children = (
+				B10001 /* ILoveSkibidiV2App.swift */,
+				D10003 /* Views */,
+				D10004 /* Services */,
+				D10005 /* Components */,
+				D10006 /* Extensions */,
+				B10013 /* Assets.xcassets */,
+			);
+			path = ILoveSkibidiV2;
+			sourceTree = "<group>";
+		};
+		D10003 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B10002 /* LoadingScreenView.swift */,
+				B10003 /* MainView.swift */,
+				B10004 /* TextCorrectionView.swift */,
+				B10005 /* NotabilityImportView.swift */,
+				B10006 /* ScannerView.swift */,
+				B10007 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D10004 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B10008 /* TextCorrectionService.swift */,
+				B10009 /* NotabilityImportService.swift */,
+				B10010 /* ScannerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D10005 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B10011 /* PremiumComponents.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D10006 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B10012 /* Color+Theme.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E10001 /* ILoveSkibidi V2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10003 /* Build configuration list for PBXNativeTarget "ILoveSkibidi V2" */;
+			buildPhases = (
+				E10002 /* Sources */,
+				E10003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ILoveSkibidi V2";
+			productName = "ILoveSkibidi V2";
+			productReference = C10001 /* ILoveSkibidi V2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		G10001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					E10001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = F10001 /* Build configuration list for PBXProject "ILoveSkibidi V2" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "fr";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				fr,
+				en,
+				Base,
+			);
+			mainGroup = D10001;
+			productRefGroup = D10010 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E10001 /* ILoveSkibidi V2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E10003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10013 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPosturing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E10002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10001 /* ILoveSkibidiV2App.swift in Sources */,
+				A10002 /* LoadingScreenView.swift in Sources */,
+				A10003 /* MainView.swift in Sources */,
+				A10004 /* TextCorrectionView.swift in Sources */,
+				A10005 /* NotabilityImportView.swift in Sources */,
+				A10006 /* ScannerView.swift in Sources */,
+				A10007 /* SettingsView.swift in Sources */,
+				A10008 /* TextCorrectionService.swift in Sources */,
+				A10009 /* NotabilityImportService.swift in Sources */,
+				A10010 /* ScannerService.swift in Sources */,
+				A10011 /* PremiumComponents.swift in Sources */,
+				A10012 /* Color+Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPosturing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		H10001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ILoveSkibidiV2/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iloveskibidi.v2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		H10002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ILoveSkibidiV2/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iloveskibidi.v2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F10001 /* Build configuration list for PBXProject "ILoveSkibidi V2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				H10001 /* Debug */,
+				H10002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F10003 /* Build configuration list for PBXNativeTarget "ILoveSkibidi V2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				H10001 /* Debug */,
+				H10002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = G10001 /* Project object */;
+}

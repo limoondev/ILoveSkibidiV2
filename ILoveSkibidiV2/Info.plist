@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>fr_FR</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.iloveskibidi.v2</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>ILoveSkibidi V2</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>2.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>13.0</string>
+    <key>NSMainStoryboardFile</key>
+    <string></string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>LSUIElement</key>
+    <false/>
+    <key>NSCameraUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès à la caméra pour scanner des documents.</string>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès pour envoyer des documents vers Notability.</string>
+    <key>com.apple.security.app-sandbox</key>
+    <false/>
+    <key>NSSupportsAutomaticTermination</key>
+    <true/>
+    <key>NSSupportsSuddenTermination</key>
+    <true/>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.productivity</string>
+</dict>
+</plist>
