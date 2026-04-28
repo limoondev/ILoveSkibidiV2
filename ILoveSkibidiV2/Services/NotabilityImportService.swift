@@ -56,12 +56,34 @@ class NotabilityImportService: ObservableObject {
         
         let fileSize = getFileSize(url: url)
         
-        if let notabilityURL = URL(string: "notability://import?url=\(url.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")") {
-            NSWorkspace.shared.open(notabilityURL)
-            registerImport(fileName: url.lastPathComponent, fileType: url.pathExtension, success: true, fileSize: fileSize)
-            return true
+        // Check if Notability is installed
+        guard isNotabilityInstalled() else {
+            // Show alert that Notability is not installed
+            let alert = NSAlert()
+            alert.messageText = "Notability non installé"
+            alert.informativeText = "Veuillez installer Notability pour utiliser cette fonctionnalité."
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+            
+            registerImport(fileName: url.lastPathComponent, fileType: url.pathExtension, success: false, fileSize: fileSize)
+            return false
         }
         
+        // Try to open file with Notability directly
+        let workspace = NSWorkspace.shared
+        let config = NSWorkspace.OpenConfiguration()
+        config.activates = true
+        
+        do {
+            try workspace.open(url, withApplicationAt: workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.NotabilityMac") ?? workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.Notability")!, configuration: config)
+            registerImport(fileName: url.lastPathComponent, fileType: url.pathExtension, success: true, fileSize: fileSize)
+            return true
+        } catch {
+            print("Error opening with Notability: \(error)")
+        }
+        
+        // Fallback: copy to clipboard and open Notability
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         
@@ -79,7 +101,10 @@ class NotabilityImportService: ObservableObject {
             }
         }
         
-        NSWorkspace.shared.open(URL(string: "notability://")!)
+        // Open Notability
+        if let notabilityURL = workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.NotabilityMac") ?? workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.Notability") {
+            workspace.open(notabilityURL)
+        }
         
         registerImport(fileName: url.lastPathComponent, fileType: url.pathExtension, success: true, fileSize: fileSize)
         return true

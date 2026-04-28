@@ -43,14 +43,12 @@ class ScannerService: ObservableObject {
     }
     
     func captureFromCamera() -> NSImage? {
-        // On macOS, we use the IKCameraDeviceView approach or AVFoundation
-        // For a standalone approach, we open the system camera
-        guard let device = AVCaptureDevice.default(for: .video) else {
-            // Fallback: open Photo Booth
-            if let url = URL(string: "x-apple.osx.photo-booth") {
-                NSWorkspace.shared.open(url)
-            }
-            return nil
+        // On macOS, open system camera app via Photo Booth or Continuity Camera
+        // This is the most reliable approach for macOS
+        if let url = URL(string: "photobooth://") {
+            NSWorkspace.shared.open(url)
+        } else if let url = URL(string: "x-apple.osx.photo-booth") {
+            NSWorkspace.shared.open(url)
         }
         return nil
     }

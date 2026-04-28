@@ -54,5 +54,18 @@
     <string>AppIcon</string>
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.productivity</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.iloveskibidi.v2.share</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>iloveskibidi</string>
+            </array>
+        </dict>
+    </array>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès pour automatiser certaines tâches et communiquer avec d'autres applications.</string>
 </dict>
 </plist>

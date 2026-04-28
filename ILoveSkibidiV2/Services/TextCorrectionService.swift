@@ -41,6 +41,7 @@ class TextCorrectionService: ObservableObject {
     func startGlobalCorrection() {
         setupSpellChecker()
         setupClipboardMonitoring()
+        setupGlobalHotkey()
     }
     
     func stopGlobalCorrection() {
@@ -60,6 +61,98 @@ class TextCorrectionService: ObservableObject {
         clipboardMonitor = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
             self?.checkClipboard()
         }
+    }
+    
+    private func setupGlobalHotkey() {
+        // Setup global hotkey for quick correction (Cmd+Shift+C)
+        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            self?.handleGlobalKeyEvent(event)
+        }
+    }
+    
+    private func handleGlobalKeyEvent(_ event: NSEvent) {
+        // Check for Cmd+Shift+C for quick correction
+        if event.modifierFlags.contains([.command, .shift]) && event.keyCode == 8 { // C key
+            correctSelectedText()
+        }
+        // Check for Cmd+Shift+V for paste and correct
+        if event.modifierFlags.contains([.command, .shift]) && event.keyCode == 9 { // V key
+            pasteAndCorrect()
+        }
+    }
+    
+    func correctSelectedText() {
+        // Get selected text from current application
+        let pasteboard = NSPasteboard.general
+        let originalContent = pasteboard.string(forType: .string) ?? ""
+        
+        // Simulate Cmd+C to copy selected text
+        let source = CGEventSource(stateID: .hidSystemState)
+        let cmdDown = CGEvent(keyboardEventSource: source, virtualKey: 0x37, keyDown: true)
+        let cDown = CGEvent(keyboardEventSource: source, virtualKey: 0x08, keyDown: true)
+        let cUp = CGEvent(keyboardEventSource: source, virtualKey: 0x08, keyDown: false)
+        let cmdUp = CGEvent(keyboardEventSource: source, virtualKey: 0x37, keyDown: false)
+        
+        cmdDown?.flags = .maskCommand
+        cDown?.flags = .maskCommand
+        cUp?.flags = .maskCommand
+        
+        cmdDown?.post(tap: .cghidEventTap)
+        cDown?.post(tap: .cghidEventTap)
+        cUp?.post(tap: .cghidEventTap)
+        cmdUp?.post(tap: .cghidEventTap)
+        
+        // Wait a bit for copy to complete
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
+            
+            if let selectedText = pasteboard.string(forType: .string), !selectedText.isEmpty {
+                let corrected = self.correctText(selectedText)
+                if corrected != selectedText {
+                    pasteboard.clearContents()
+                    pasteboard.setString(corrected, forType: .string)
+                    
+                    // Simulate Cmd+V to paste corrected text
+                    let vDown = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true)
+                    let vUp = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false)
+                    
+                    vDown?.flags = .maskCommand
+                    vUp?.flags = .maskCommand
+                    
+                    vDown?.post(tap: .cghidEventTap)
+                    vUp?.post(tap: .cghidEventTap)
+                    
+                    self.registerCorrection(original: selectedText, corrected: corrected, type: .spelling)
+                }
+            }
+        }
+    }
+    
+    func pasteAndCorrect() {
+        let pasteboard = NSPasteboard.general
+        guard let content = pasteboard.string(forType: .string), !content.isEmpty else { return }
+        
+        let corrected = correctText(content)
+        if corrected != content {
+            pasteboard.clearContents()
+            pasteboard.setString(corrected, forType: .string)
+            registerCorrection(original: content, corrected: corrected, type: .spelling)
+        }
+        
+        // Simulate Cmd+V to paste
+        let source = CGEventSource(stateID: .hidSystemState)
+        let cmdDown = CGEvent(keyboardEventSource: source, virtualKey: 0x37, keyDown: true)
+        let vDown = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true)
+        let vUp = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false)
+        let cmdUp = CGEvent(keyboardEventSource: source, virtualKey: 0x37, keyDown: false)
+        
+        vDown?.flags = .maskCommand
+        vUp?.flags = .maskCommand
+        
+        cmdDown?.post(tap: .cghidEventTap)
+        vDown?.post(tap: .cghidEventTap)
+        vUp?.post(tap: .cghidEventTap)
+        cmdUp?.post(tap: .cghidEventTap)
     }
     
     private func checkClipboard() {
