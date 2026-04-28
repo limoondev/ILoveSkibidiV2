@@ -52,7 +52,7 @@ struct ILoveSkibidiV2App: App {
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Request accessibility permissions if needed
-        let options = [kAXTrustedCheckOptionPrompt.takeValue() as String: true]
+        let options = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as String: true]
         let accessibilityEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary)
         
         if !accessibilityEnabled {

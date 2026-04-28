@@ -31,6 +31,15 @@ struct TextCorrectionView: View {
             case .custom: return "Paramètres personnalisés"
             }
         }
+        
+        var accentColor: Color {
+            switch self {
+            case .minimal: return .blue
+            case .standard: return .green
+            case .aggressive: return .orange
+            case .custom: return .purple
+            }
+        }
     }
     
     var body: some View {

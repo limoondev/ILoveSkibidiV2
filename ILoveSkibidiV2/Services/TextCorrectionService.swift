@@ -84,7 +84,7 @@ class TextCorrectionService: ObservableObject {
     func correctSelectedText() {
         // Get selected text from current application
         let pasteboard = NSPasteboard.general
-        let originalContent = pasteboard.string(forType: .string) ?? ""
+        _ = pasteboard.string(forType: .string) ?? ""
         
         // Simulate Cmd+C to copy selected text
         let source = CGEventSource(stateID: .hidSystemState)

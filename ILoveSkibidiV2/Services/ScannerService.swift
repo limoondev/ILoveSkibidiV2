@@ -176,6 +176,12 @@ class ScannerService: ObservableObject {
         scanHistory.insert(record, at: 0)
     }
     
+    func copyToClipboard(_ image: NSImage) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.writeObjects([image])
+    }
+    
     func exportImage(_ image: NSImage) {
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.png, .jpeg, .tiff, .pdf]

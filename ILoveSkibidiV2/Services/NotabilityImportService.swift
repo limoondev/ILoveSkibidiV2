@@ -76,7 +76,7 @@ class NotabilityImportService: ObservableObject {
         config.activates = true
         
         do {
-            try workspace.open(url, withApplicationAt: workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.NotabilityMac") ?? workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.Notability")!, configuration: config)
+            try workspace.open([url], withApplicationAt: workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.NotabilityMac") ?? workspace.urlForApplication(withBundleIdentifier: "com.gingerlabs.Notability")!, configuration: config)
             registerImport(fileName: url.lastPathComponent, fileType: url.pathExtension, success: true, fileSize: fileSize)
             return true
         } catch {
