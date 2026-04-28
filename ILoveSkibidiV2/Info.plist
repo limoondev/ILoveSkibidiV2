@@ -15,9 +15,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>2.0.0</string>
+    <string>2.1.0</string>
     <key>CFBundleVersion</key>
-    <string>1</string>
+    <string>2</string>
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
     <key>NSMainStoryboardFile</key>
@@ -30,6 +30,20 @@
     <string>ILoveSkibidi V2 nécessite l'accès à la caméra pour scanner des documents.</string>
     <key>NSAppleEventsUsageDescription</key>
     <string>ILoveSkibidi V2 nécessite l'accès pour envoyer des documents vers Notability.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès au microphone pour la dictée vocale.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>ILoveSkibidi V2 utilise la reconnaissance vocale pour transcrire votre parole en texte.</string>
+    <key>NSAccessibilityUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès à l'accessibilité pour le correcteur orthographique global.</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès au dossier Documents pour organiser vos fichiers.</string>
+    <key>NSDesktopFolderUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès au Bureau pour organiser vos fichiers.</string>
+    <key>NSDownloadsFolderUsageDescription</key>
+    <string>ILoveSkibidi V2 nécessite l'accès au dossier Téléchargements pour organiser vos fichiers.</string>
+    <key>NSCloudKitUsageDescription</key>
+    <string>ILoveSkibidi V2 utilise iCloud pour synchroniser vos notes et données.</string>
     <key>com.apple.security.app-sandbox</key>
     <false/>
     <key>NSSupportsAutomaticTermination</key>

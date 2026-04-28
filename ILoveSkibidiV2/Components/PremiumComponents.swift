@@ -4,6 +4,8 @@ struct GlassCard<Content: View>: View {
     var cornerRadius: CGFloat = 16
     var padding: CGFloat = 20
     var showBorder: Bool = true
+    var showGlow: Bool = false
+    var glowColor: Color = .appPrimary
     @ViewBuilder let content: () -> Content
     
     var body: some View {
@@ -14,7 +16,13 @@ struct GlassCard<Content: View>: View {
                     .fill(.ultraThinMaterial)
                     .overlay(
                         RoundedRectangle(cornerRadius: cornerRadius)
-                            .fill(Color.appSurface.opacity(0.5))
+                            .fill(
+                                LinearGradient(
+                                    colors: [Color.appSurface.opacity(0.3), Color.appSurface.opacity(0.6)],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
                     )
             )
             .overlay(
@@ -26,6 +34,15 @@ struct GlassCard<Content: View>: View {
             )
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
             .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(
+                        showGlow ? glowColor.opacity(0.6) : Color.clear,
+                        lineWidth: 2
+                    )
+                    .blur(radius: showGlow ? 8 : 0)
+            )
+            .animation(.easeInOut(duration: 0.3), value: showGlow)
     }
 }
 
@@ -34,6 +51,7 @@ struct PremiumButton: View {
     var icon: String? = nil
     var style: ButtonStyleType = .primary
     var isLoading: Bool = false
+    var showGlow: Bool = false
     var action: () -> Void
     
     enum ButtonStyleType {
@@ -58,6 +76,15 @@ struct PremiumButton: View {
         }
     }
     
+    private var gradientColors: [Color] {
+        switch style {
+        case .primary: return [.appPrimary, .appAccent]
+        case .danger: return [.appDanger, .red]
+        case .success: return [.appSuccess, .green]
+        case .secondary, .ghost: return [backgroundColor, backgroundColor]
+        }
+    }
+    
     var body: some View {
         Button(action: action) {
             HStack(spacing: 8) {
@@ -79,9 +106,15 @@ struct PremiumButton: View {
             .padding(.horizontal, 20)
             .background(
                 Group {
-                    if style == .primary {
+                    if style == .primary || style == .danger || style == .success {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(LinearGradient.appGradientHorizontal)
+                            .fill(
+                                LinearGradient(
+                                    colors: gradientColors,
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
                     } else {
                         RoundedRectangle(cornerRadius: 12)
                             .fill(backgroundColor)
@@ -94,9 +127,18 @@ struct PremiumButton: View {
             )
             .foregroundColor(foregroundColor)
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            .shadow(color: style == .primary ? Color.appPrimary.opacity(0.3) : Color.clear, radius: 8, x: 0, y: 4)
+            .shadow(color: (style == .primary || style == .danger || style == .success) ? gradientColors[0].opacity(0.4) : Color.clear, radius: showGlow ? 20 : 8, x: 0, y: showGlow ? 8 : 4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(
+                        showGlow ? gradientColors[0].opacity(0.5) : Color.clear,
+                        lineWidth: 2
+                    )
+                    .blur(radius: showGlow ? 10 : 0)
+            )
         }
         .buttonStyle(ScaleButtonStyle())
+        .animation(.easeInOut(duration: 0.3), value: showGlow)
     }
 }
 
@@ -104,7 +146,7 @@ struct ScaleButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(.easeInOut(duration: 0.15), value: configuration.isPressed)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }
 
@@ -186,6 +228,7 @@ struct ToggleSwitch: View {
 struct StatusBadge: View {
     var text: String
     var color: Color
+    var showGlow: Bool = false
     
     var body: some View {
         Text(text)
@@ -195,8 +238,24 @@ struct StatusBadge: View {
             .padding(.vertical, 4)
             .background(
                 Capsule()
-                    .fill(color)
+                    .fill(
+                        LinearGradient(
+                            colors: [color, color.opacity(0.8)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
             )
+            .shadow(color: showGlow ? color.opacity(0.5) : Color.clear, radius: showGlow ? 12 : 4, x: 0, y: showGlow ? 6 : 2)
+            .overlay(
+                Capsule()
+                    .stroke(
+                        showGlow ? color.opacity(0.6) : Color.clear,
+                        lineWidth: 1.5
+                    )
+                    .blur(radius: showGlow ? 6 : 0)
+            )
+            .animation(.easeInOut(duration: 0.3), value: showGlow)
     }
 }
 

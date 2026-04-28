@@ -12,6 +12,12 @@ struct MainView: View {
         case settings = "Réglages"
         case clipboard = "Presse-papier"
         case shortcuts = "Raccourcis"
+        case notes = "Notes"
+        case voice = "Dictée"
+        case pdf = "PDF"
+        case ocr = "OCR"
+        case files = "Fichiers"
+        case tasks = "Tâches"
         
         var icon: String {
             switch self {
@@ -21,6 +27,12 @@ struct MainView: View {
             case .settings: return "gearshape.fill"
             case .clipboard: return "doc.on.clipboard"
             case .shortcuts: return "keyboard"
+            case .notes: return "note.text"
+            case .voice: return "mic.fill"
+            case .pdf: return "doc.richtext"
+            case .ocr: return "text.bubble"
+            case .files: return "folder.fill"
+            case .tasks: return "checklist"
             }
         }
         
@@ -32,6 +44,12 @@ struct MainView: View {
             case .settings: return .appTextSecondary
             case .clipboard: return .purple
             case .shortcuts: return .orange
+            case .notes: return .yellow
+            case .voice: return .red
+            case .pdf: return .orange
+            case .ocr: return .purple
+            case .files: return .blue
+            case .tasks: return .green
             }
         }
         
@@ -43,6 +61,12 @@ struct MainView: View {
             case .settings: return "Préférences de l'app"
             case .clipboard: return "Historique du presse-papier"
             case .shortcuts: return "Raccourcis clavier personnalisés"
+            case .notes: return "Notes rapides"
+            case .voice: return "Dictée vocale"
+            case .pdf: return "Fusion PDF"
+            case .ocr: return "Image vers texte"
+            case .files: return "Organisateur de fichiers"
+            case .tasks: return "Gestionnaire de tâches"
             }
         }
     }
@@ -167,6 +191,18 @@ struct MainView: View {
                 ClipboardHistoryView()
             case .shortcuts:
                 ShortcutsView()
+            case .notes:
+                QuickNotesView()
+            case .voice:
+                VoiceDictationView()
+            case .pdf:
+                PDFMergerView()
+            case .ocr:
+                ImageToTextView()
+            case .files:
+                FileOrganizerView()
+            case .tasks:
+                TaskManagerView()
             }
         }
         .animation(.easeInOut(duration: 0.3), value: selectedTab)
