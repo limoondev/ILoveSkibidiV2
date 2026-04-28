@@ -27,42 +27,29 @@ class PDFMergerService: ObservableObject {
         
         guard !pdfFiles.isEmpty else { return false }
         
-        guard let writeContext = CGContext(destinationURL as CFURL, mediaBox: nil, nil) else {
-            return false
-        }
-        
-        var mediaBox = CGRect(x: 0, y: 0, width: 595, height: 842)
-        writeContext.beginPDF(mediaBox: &mediaBox)
+        let mergedDocument = PDFDocument()
         
         for pdfURL in pdfFiles {
             if let pdfDocument = PDFDocument(url: pdfURL) {
                 for pageIndex in 0..<pdfDocument.pageCount {
                     if let page = pdfDocument.page(at: pageIndex) {
-                        let pageBounds = page.bounds(for: .cropBox)
-                        
-                        writeContext.beginPDFPage(&pageBounds)
-                        
-                        if let cgImage = generateCGImage(from: page) {
-                            writeContext.draw(cgImage, in: pageBounds)
-                        }
-                        
-                        writeContext.endPDFPage()
+                        mergedDocument.insert(page, at: mergedDocument.pageCount)
                     }
                 }
             }
         }
         
-        writeContext.closePDF()
-        return true
-    }
-    
-    private func generateCGImage(from page: PDFPage) -> CGImage? {
-        let bounds = page.bounds(for: .cropBox)
-        let image = NSImage(size: bounds.size)
-        image.lockFocus()
-        page.draw(with: .cropBox, to: .zero)
-        image.unlockFocus()
-        return image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        if let data = mergedDocument.dataRepresentation {
+            do {
+                try data.write(to: destinationURL)
+                return true
+            } catch {
+                print("Error writing merged PDF: \(error)")
+                return false
+            }
+        }
+        
+        return false
     }
     
     func reorderPDFs(from source: IndexSet, to destination: Int) {

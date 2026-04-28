@@ -9,7 +9,7 @@ class TaskManagerService: ObservableObject {
     static let shared = TaskManagerService()
     
     struct Task: Identifiable, Codable {
-        let id = UUID()
+        var id = UUID()
         var title: String
         var isCompleted: Bool
         var priority: TaskPriority
@@ -46,7 +46,7 @@ class TaskManagerService: ObservableObject {
     }
     
     struct TaskCategory: Identifiable, Codable {
-        let id = UUID()
+        var id = UUID()
         var name: String
         var color: String
         var icon: String

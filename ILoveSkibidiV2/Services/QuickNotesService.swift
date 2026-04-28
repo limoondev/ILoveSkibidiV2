@@ -9,7 +9,7 @@ class QuickNotesService: ObservableObject {
     static let shared = QuickNotesService()
     
     struct QuickNote: Identifiable, Codable {
-        let id = UUID()
+        var id = UUID()
         var content: String
         var createdAt: Date
         var updatedAt: Date

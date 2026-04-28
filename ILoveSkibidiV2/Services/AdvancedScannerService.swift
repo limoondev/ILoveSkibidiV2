@@ -136,7 +136,7 @@ class AdvancedScannerService: ObservableObject {
     private func detectDocumentBoundaries(_ image: NSImage) {
         guard let ciImage = image.toCIImage() else { return }
         
-        let request = VNDetectDocumentContoursRequest { [weak self] request, error in
+        let request = VNRecognizeRectanglesRequest { [weak self] request, error in
             guard let observations = request.results as? [VNRectangleObservation] else { return }
             
             DispatchQueue.main.async {
@@ -346,6 +346,18 @@ class AdvancedScannerService: ObservableObject {
         try? pdfData.write(to: url)
     }
     
+    private func saveAsPDF(_ image: NSImage, to url: URL) {
+        let pdfData = NSMutableData()
+        
+        guard let pdfPage = PDFPage(image: image) else { return }
+        let pdfDocument = PDFDocument()
+        pdfDocument.insert(pdfPage, at: 0)
+        
+        if let data = pdfDocument.dataRepresentation {
+            try? data.write(to: url)
+        }
+    }
+    
     func copyToClipboard(_ image: NSImage) {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -357,30 +369,16 @@ class AdvancedScannerService: ObservableObject {
     }
     
     func createMultiPagePDF(from images: [NSImage], to url: URL) {
-        let pdfData = NSMutableData()
-        
-        guard let consumer = CGDataConsumer(data: pdfData as CFMutableData),
-              let context = CGContext(consumer: consumer, mediaBox: nil, nil) else { return }
-        
-        var mediaBox = CGRect(x: 0, y: 0, width: 595, height: 842) // A4 size
-        
-        context.beginPDF(mediaBox: &mediaBox)
+        let pdfDocument = PDFDocument()
         
         for image in images {
             if let pdfPage = PDFPage(image: image) {
-                let pageBounds = pdfPage.bounds(for: .cropBox)
-                context.beginPDFPage(&pageBounds)
-                
-                if let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-                    context.draw(cgImage, in: pageBounds)
-                }
-                
-                context.endPDFPage()
+                pdfDocument.insert(pdfPage, at: pdfDocument.pageCount)
             }
         }
         
-        context.closePDF()
-        
-        try? pdfData.write(to: url)
+        if let data = pdfDocument.dataRepresentation {
+            try? data.write(to: url)
+        }
     }
 }

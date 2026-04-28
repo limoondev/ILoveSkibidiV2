@@ -63,15 +63,11 @@ class VoiceDictationService: NSObject, ObservableObject, AVAudioRecorderDelegate
             }
         }
         
-        let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-            
             let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let audioFilename = documentsPath.appendingPathComponent("recording.m4a")
             
-            let settings = [
+            let settings: [String: Any] = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
                 AVSampleRateKey: 44100.0,
                 AVNumberOfChannelsKey: 1,
@@ -83,7 +79,7 @@ class VoiceDictationService: NSObject, ObservableObject, AVAudioRecorderDelegate
             audioRecorder?.record()
             
         } catch {
-            print("Audio session error: \(error)")
+            print("Audio recording error: \(error)")
             stopRecording()
         }
     }

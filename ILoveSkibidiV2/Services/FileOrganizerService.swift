@@ -2,6 +2,37 @@ import Foundation
 import AppKit
 import SwiftUI
 
+enum FileCategory: String, CaseIterable {
+    case documents = "Documents"
+    case images = "Images"
+    case videos = "Vidéos"
+    case audio = "Audio"
+    case archives = "Archives"
+    case other = "Autres"
+    
+    var icon: String {
+        switch self {
+        case .documents: return "doc.text"
+        case .images: return "photo"
+        case .videos: return "video"
+        case .audio: return "music.note"
+        case .archives: return "archivebox"
+        case .other: return "folder"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .documents: return .blue
+        case .images: return .green
+        case .videos: return .purple
+        case .audio: return .orange
+        case .archives: return .brown
+        case .other: return .gray
+        }
+    }
+}
+
 class FileOrganizerService: ObservableObject {
     @Published var organizedFolders: [OrganizedFolder] = []
     @Published var isProcessing = false
@@ -13,37 +44,6 @@ class FileOrganizerService: ObservableObject {
         let name: String
         let files: [URL]
         let category: FileCategory
-        
-        enum FileCategory: String, CaseIterable {
-            case documents = "Documents"
-            case images = "Images"
-            case videos = "Vidéos"
-            case audio = "Audio"
-            case archives = "Archives"
-            case other = "Autres"
-            
-            var icon: String {
-                switch self {
-                case .documents: return "doc.text"
-                case .images: return "photo"
-                case .videos: return "video"
-                case .audio: return "music.note"
-                case .archives: return "archivebox"
-                case .other: return "folder"
-                }
-            }
-            
-            var color: Color {
-                switch self {
-                case .documents: return .blue
-                case .images: return .green
-                case .videos: return .purple
-                case .audio: return .orange
-                case .archives: return .brown
-                case .other: return .gray
-                }
-            }
-        }
     }
     
     func organizeFiles(in directory: URL) {
@@ -75,7 +75,7 @@ class FileOrganizerService: ObservableObject {
         isProcessing = false
     }
     
-    private func categorizeFile(_ url: URL) -> OrganizedFolder.FileCategory {
+    private func categorizeFile(_ url: URL) -> FileCategory {
         let ext = url.pathExtension.lowercased()
         
         let documentExtensions = ["pdf", "doc", "docx", "txt", "rtf", "pages", "key"]
