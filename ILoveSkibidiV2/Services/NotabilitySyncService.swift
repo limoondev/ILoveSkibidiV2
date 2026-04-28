@@ -90,7 +90,7 @@ class NotabilitySyncService: ObservableObject {
                     }
                     
                     return SyncedNote(
-                        id: record.recordID,
+                        id: UUID(uuidString: record.recordID.recordName) ?? UUID(),
                         title: title,
                         content: content,
                         createdAt: createdAt,

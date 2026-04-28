@@ -99,6 +99,12 @@ class VoiceDictationService: NSObject, ObservableObject, AVAudioRecorderDelegate
         transcribedText = ""
     }
     
+    func copyToClipboard() {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(transcribedText, forType: .string)
+    }
+    
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             print("Recording failed")

@@ -1,5 +1,31 @@
 import SwiftUI
 import PDFKit
+import UniformTypeIdentifiers
+
+struct PDFFileDocument: FileDocument {
+    static var readableContentTypes: [UTType] { [.pdf] }
+    
+    var pdfDocument: PDFDocument
+    
+    init(pdfDocument: PDFDocument = PDFDocument()) {
+        self.pdfDocument = pdfDocument
+    }
+    
+    init(configuration: ReadConfiguration) throws {
+        guard let data = configuration.file.regularFileContents,
+              let pdf = PDFDocument(data: data) else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        self.pdfDocument = pdf
+    }
+    
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        guard let data = pdfDocument.dataRepresentation() else {
+            throw CocoaError(.fileWriteUnknown)
+        }
+        return FileWrapper(regularFileWithContents: data)
+    }
+}
 
 struct PDFMergerView: View {
     @StateObject private var service = PDFMergerService.shared
@@ -67,7 +93,7 @@ struct PDFMergerView: View {
         }
         .fileExporter(
             isPresented: $showSavePanel,
-            document: PDFDocument(),
+            document: PDFFileDocument(),
             contentType: .pdf,
             defaultFilename: "merged_document",
             onCompletion: { result in
