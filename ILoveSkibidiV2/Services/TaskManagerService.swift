@@ -1,5 +1,6 @@
 import Foundation
 import AppKit
+import SwiftUI
 
 class TaskManagerService: ObservableObject {
     @Published var tasks: [Task] = []

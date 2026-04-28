@@ -71,23 +71,23 @@ struct SettingsView: View {
                         SectionHeader(title: "Langue de correction", icon: "globe")
                         
                         HStack(spacing: 12) {
-                            LanguageButton(code: "fr", name: "Français", isSelected: correctionLanguage == "fr") {
+                            SettingsLanguageButton(code: "fr", name: "Français", isSelected: correctionLanguage == "fr") {
                                 correctionLanguage = "fr"
                                 correctionService.correctionLanguage = "fr"
                             }
-                            LanguageButton(code: "en", name: "English", isSelected: correctionLanguage == "en") {
+                            SettingsLanguageButton(code: "en", name: "English", isSelected: correctionLanguage == "en") {
                                 correctionLanguage = "en"
                                 correctionService.correctionLanguage = "en"
                             }
-                            LanguageButton(code: "de", name: "Deutsch", isSelected: correctionLanguage == "de") {
+                            SettingsLanguageButton(code: "de", name: "Deutsch", isSelected: correctionLanguage == "de") {
                                 correctionLanguage = "de"
                                 correctionService.correctionLanguage = "de"
                             }
-                            LanguageButton(code: "es", name: "Español", isSelected: correctionLanguage == "es") {
+                            SettingsLanguageButton(code: "es", name: "Español", isSelected: correctionLanguage == "es") {
                                 correctionLanguage = "es"
                                 correctionService.correctionLanguage = "es"
                             }
-                            LanguageButton(code: "it", name: "Italiano", isSelected: correctionLanguage == "it") {
+                            SettingsLanguageButton(code: "it", name: "Italiano", isSelected: correctionLanguage == "it") {
                                 correctionLanguage = "it"
                                 correctionService.correctionLanguage = "it"
                             }
@@ -270,7 +270,7 @@ struct SettingsView: View {
     }
 }
 
-struct LanguageButton: View {
+struct SettingsLanguageButton: View {
     var code: String
     var name: String
     var isSelected: Bool

@@ -1,5 +1,6 @@
 import Foundation
 import AppKit
+import SwiftUI
 
 class FileOrganizerService: ObservableObject {
     @Published var organizedFolders: [OrganizedFolder] = []

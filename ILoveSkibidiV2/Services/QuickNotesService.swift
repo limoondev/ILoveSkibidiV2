@@ -1,5 +1,6 @@
 import Foundation
 import AppKit
+import SwiftUI
 
 class QuickNotesService: ObservableObject {
     @Published var notes: [QuickNote] = []
