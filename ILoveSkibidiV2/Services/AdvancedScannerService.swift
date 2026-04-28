@@ -311,7 +311,7 @@ class AdvancedScannerService: ObservableObject {
                     let fileExtension = url.pathExtension.lowercased()
                     
                     if fileExtension == "pdf" {
-                        saveAsPDF(from: image, to: url)
+                        saveAsPDF(image, to: url)
                     } else if let data = bitmap?.representation(using: fileExtension == "jpg" ? .jpeg : .png, properties: fileExtension == "jpg" ? [.compressionFactor: 0.9] : [:]) {
                         try? data.write(to: url)
                     }
