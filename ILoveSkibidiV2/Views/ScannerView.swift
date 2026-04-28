@@ -98,7 +98,6 @@ struct ScannerView: View {
                                 }
                                 
                                 PremiumButton(title: "Import Notability", icon: "square.and.arrow.down", style: .secondary) {
-                                    // Export temp then import
                                     let tempDir = FileManager.default.temporaryDirectory
                                     let tempURL = tempDir.appendingPathComponent("scan_\(Int(Date().timeIntervalSince1970)).png")
                                     if let tiffData = processedImage.tiffRepresentation,
@@ -201,85 +200,12 @@ struct ScannerView: View {
                         }
                     }
                 }
-            }
-            
-            if showImagePreview, let processedImage = service.processedImage {
+                
                 GlassCard {
-                    VStack(spacing: 16) {
-                        SectionHeader(title: "Aperçu du scan", icon: "eye")
+                    VStack(spacing: 12) {
+                        SectionHeader(title: "Historique des scans", icon: "clock.arrow.circlepath")
                         
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.appSurfaceLight)
-                                .frame(height: 300)
-                            
-                            Image(nsImage: processedImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxHeight: 280)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .shadow(radius: 8)
-                        }
-                        
-                        HStack(spacing: 12) {
-                            PremiumButton(title: "Exporter", icon: "square.and.arrow.up", style: .success) {
-                                service.exportImage(processedImage)
-                            }
-                            
-                            PremiumButton(title: "Import Notability", icon: "square.and.arrow.down", style: .secondary) {
-                                // Export temp then import
-                                let tempDir = FileManager.default.temporaryDirectory
-                                let tempURL = tempDir.appendingPathComponent("scan_\(Int(Date().timeIntervalSince1970)).png")
-                                if let tiffData = processedImage.tiffRepresentation,
-                                   let bitmap = NSBitmapImageRep(data: tiffData),
-                                   let pngData = bitmap.representation(using: .png, properties: [:]) {
-                                    try? pngData.write(to: tempURL)
-                                    NotabilityImportService.shared.importToNotability(url: tempURL)
-                                }
-                            }
-                            
-                            Button(action: {
-                                service.copyToClipboard(processedImage)
-                            }) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.appSurfaceLight)
-                                        .frame(width: 44, height: 44)
-                                    Image(systemName: "doc.on.doc")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundColor(.appPrimary)
-                                }
-                            }
-                            .buttonStyle(ScaleButtonStyle())
-                        }
-                    }
-                }
-            }
-            
-            GlassCard {
-                VStack(spacing: 16) {
-                    SectionHeader(title: "Réglages d'image", icon: "slider.horizontal.3")
-                    
-                    HStack {
-                        ToggleSwitch(isOn: $service.autoEnhance, accentColor: .appSuccess)
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Amélioration automatique")
-                                .font(.system(size: 13, weight: .medium, design: .rounded))
-                                .foregroundColor(.appTextPrimary)
-                            Text("Ajuste automatiquement la clarté et le contraste")
-                                .font(.system(size: 11))
-                                .foregroundColor(.appTextSecondary)
-                        }
-                        Spacer()
-                    }
-                }
-            }
-            
-            GlassCard {
-                VStack(spacing: 12) {
-                    SectionHeader(title: "Historique des scans", icon: "clock.arrow.circlepath")
-                    
-                    if service.scanHistory.isEmpty {
+                        if service.scanHistory.isEmpty {
                             Text("Aucun scan pour le moment")
                                 .font(.system(size: 13))
                                 .foregroundColor(.appTextSecondary)
@@ -328,7 +254,6 @@ struct ScannerView: View {
             .onChange(of: service.contrast) { _ in reprocessImage() }
             .onChange(of: service.saturation) { _ in reprocessImage() }
             .onChange(of: service.sharpness) { _ in reprocessImage() }
-            .onChange(of: service.documentMode) { _ in reprocessImage() }
         }
     }
     
