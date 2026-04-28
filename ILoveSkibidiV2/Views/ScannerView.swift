@@ -279,7 +279,7 @@ struct ScannerModeButton: View {
             .padding(.vertical, 14)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? LinearGradient.appGradient : Color.appSurfaceLight)
+                    .fill(isSelected ? LinearGradient.appGradient : Color.appSurfaceLight.opacity(0.5))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 12)

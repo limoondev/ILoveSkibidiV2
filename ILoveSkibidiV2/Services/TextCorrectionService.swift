@@ -86,14 +86,15 @@ class TextCorrectionService: ObservableObject {
         var correctedWords: [String] = []
         
         for word in words {
-            if spellChecker.checkSpelling(of: word, startingAt: 0) == word.utf16.count {
+            let misspelledRange = spellChecker.checkSpelling(of: word, startingAt: 0)
+            if misspelledRange.location == NSNotFound {
                 // Word is spelled correctly
                 correctedWords.append(word)
             } else {
                 // Try to get suggestions
                 if let range = result.range(of: word) {
                     let nsRange = NSRange(range, in: result)
-                    if let suggestions = spellChecker.guesses(forWordRange: nsRange, in: result, language: correctionLanguage), let firstSuggestion = suggestions.first {
+                    if let suggestions = spellChecker.guesses(forWordRange: nsRange, in: result, language: correctionLanguage, inSpellDocumentWithTag: 0), let firstSuggestion = suggestions.first {
                         correctedWords.append(firstSuggestion)
                     } else {
                         correctedWords.append(word)
@@ -188,7 +189,7 @@ class TextCorrectionService: ObservableObject {
     }
     
     func getSuggestions(for word: String) -> [String] {
-        return spellChecker.guesses(forWordRange: NSRange(location: 0, length: word.utf16.count), in: word, language: correctionLanguage) ?? []
+        return spellChecker.guesses(forWordRange: NSRange(location: 0, length: word.utf16.count), in: word, language: correctionLanguage, inSpellDocumentWithTag: 0) ?? []
     }
     
     func checkGrammar(_ text: String) -> [NSRange] {
