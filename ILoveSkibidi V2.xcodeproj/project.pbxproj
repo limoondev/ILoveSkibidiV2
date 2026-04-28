@@ -78,9 +78,9 @@
 		B10029 /* FileOrganizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileOrganizerView.swift; sourceTree = "<group>"; };
 		B10030 /* TaskManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerView.swift; sourceTree = "<group>"; };
 		B10031 /* CorrectionMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionMenuView.swift; sourceTree = "<group>"; };
-		B10032 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension/ShareViewController.swift; sourceTree = "<group>"; };
-		B10033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ShareExtension/Info.plist; sourceTree = "<group>"; };
-		B10034 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareExtension/MainInterface.storyboard; sourceTree = "<group>"; };
+		B10032 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		B10033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B10034 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -477,7 +477,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_FILE = ILoveSkibidiV2/ShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -498,7 +498,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_FILE = ILoveSkibidiV2/ShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
