@@ -49,11 +49,6 @@ class NotabilityImportService: ObservableObject {
     func importToNotability(url: URL) -> Bool {
         guard isEnabled else { return false }
         
-        let notabilityURLSchemes = [
-            "notability://",
-            "notability://import"
-        ]
-        
         guard FileManager.default.fileExists(atPath: url.path) else {
             registerImport(fileName: url.lastPathComponent, fileType: url.pathExtension, success: false, fileSize: 0)
             return false
