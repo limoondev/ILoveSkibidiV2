@@ -16,7 +16,7 @@ struct VoiceDictationView: View {
                         VStack(spacing: 16) {
                             ZStack {
                                 Circle()
-                                    .fill(service.isRecording ? LinearGradient.appGradient : Color.appSurfaceLight.opacity(0.5))
+                                    .fill(service.isRecording ? AnyShapeStyle(LinearGradient.appGradient) : AnyShapeStyle(Color.appSurfaceLight.opacity(0.5)))
                                     .frame(width: 120, height: 120)
                                     .shadow(color: service.isRecording ? .appPrimary.opacity(0.4) : .clear, radius: 16)
                                 

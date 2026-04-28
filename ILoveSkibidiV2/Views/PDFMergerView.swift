@@ -1,4 +1,5 @@
 import SwiftUI
+import PDFKit
 
 struct PDFMergerView: View {
     @StateObject private var service = PDFMergerService.shared
@@ -69,7 +70,7 @@ struct PDFMergerView: View {
             document: PDFDocument(),
             contentType: .pdf,
             defaultFilename: "merged_document",
-            onComplete: { result in
+            onCompletion: { result in
                 switch result {
                 case .success(let url):
                     service.mergePDFs(to: url)

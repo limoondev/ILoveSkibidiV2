@@ -80,8 +80,9 @@ class NotabilitySyncService: ObservableObject {
         database.fetch(withQuery: query) { [weak self] result in
             switch result {
             case .success(let records):
-                let notes = records.compactMap { record -> SyncedNote? in
-                    guard let title = record["title"] as? String,
+                let notes = records.matchResults.compactMap { _, result -> SyncedNote? in
+                    guard case .success(let record) = result,
+                          let title = record["title"] as? String,
                           let content = record["content"] as? String,
                           let createdAt = record["createdAt"] as? Date,
                           let updatedAt = record["updatedAt"] as? Date else {
