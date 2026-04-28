@@ -215,8 +215,15 @@ struct LanguageButton: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
             .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(isSelected ? LinearGradient.appGradient : Color.appSurfaceLight.opacity(0.5))
+                Group {
+                    if isSelected {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(LinearGradient.appGradient)
+                    } else {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.appSurfaceLight.opacity(0.5))
+                    }
+                }
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
