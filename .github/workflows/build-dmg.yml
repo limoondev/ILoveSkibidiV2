@@ -20,102 +20,34 @@ jobs:
       with:
         xcode-version: latest-stable
         
-    - name: Create Package.swift
+    - name: Build with xcodebuild
       run: |
-        cat > Package.swift << 'EOF'
-        // swift-tools-version: 5.9
-        import PackageDescription
-        
-        let package = Package(
-            name: "ILoveSkibidiV2",
-            platforms: [.macOS(.v13)],
-            products: [
-                .executable(name: "ILoveSkibidiV2", targets: ["ILoveSkibidiV2"])
-            ],
-            targets: [
-                .executableTarget(
-                    name: "ILoveSkibidiV2",
-                    sources: [
-                        "ILoveSkibidiV2App.swift",
-                        "Views/LoadingScreenView.swift",
-                        "Views/MainView.swift",
-                        "Views/TextCorrectionView.swift",
-                        "Views/NotabilityImportView.swift",
-                        "Views/ScannerView.swift",
-                        "Views/SettingsView.swift",
-                        "Services/TextCorrectionService.swift",
-                        "Services/NotabilityImportService.swift",
-                        "Services/ScannerService.swift",
-                        "Components/PremiumComponents.swift",
-                        "Extensions/Color+Theme.swift"
-                    ],
-                    resources: [
-                        .copy("Info.plist")
-                    ]
-                )
-            ]
-        )
-        EOF
-        
-    - name: Build with Swift
-      run: |
-        swift build -c release
-        
-    - name: Create macOS App Bundle
-      run: |
-        # Créer la structure de l'app
-        APP_NAME="ILoveSkibidi V2"
-        APP_PATH="build/release/${APP_NAME}.app"
-        CONTENTS_PATH="${APP_PATH}/Contents"
-        MACOS_PATH="${CONTENTS_PATH}/MacOS"
-        RESOURCES_PATH="${CONTENTS_PATH}/Resources"
-        
-        mkdir -p "${MACOS_PATH}"
-        mkdir -p "${RESOURCES_PATH}"
-        
-        # Copier l'exécutable
-        cp build/release/ILoveSkibidiV2 "${MACOS_PATH}/${APP_NAME}"
-        
-        # Créer Info.plist
-        cat > "${CONTENTS_PATH}/Info.plist" << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>ILoveSkibidi V2</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.iloveskibidi.v2</string>
-            <key>CFBundleName</key>
-            <string>ILoveSkibidi V2</string>
-            <key>CFBundlePackageType</key>
-            <string>APPL</string>
-            <key>CFBundleShortVersionString</key>
-            <string>2.0.0</string>
-            <key>CFBundleVersion</key>
-            <string>1</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>13.0</string>
-            <key>NSPrincipalClass</key>
-            <string>NSApplication</string>
-            <key>NSCameraUsageDescription</key>
-            <string>ILoveSkibidi V2 nécessite l'accès à la caméra pour scanner des documents.</string>
-            <key>NSAppleEventsUsageDescription</key>
-            <string>ILoveSkibidi V2 nécessite l'accès pour envoyer des documents vers Notability.</string>
-            <key>LSUIElement</key>
-            <false/>
-        </dict>
-        </plist>
-        EOF
-        
-        # Rendre l'exécutable exécutable
-        chmod +x "${MACOS_PATH}/${APP_NAME}"
+        xcodebuild -project "ILoveSkibidi V2.xcodeproj" \
+          -scheme "ILoveSkibidi V2" \
+          -configuration Release \
+          -derivedDataPath build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO \
+          clean build
         
     - name: Create DMG
       run: |
+        # Créer le dossier pour l'app
+        mkdir -p dmg-content
+        
+        # Copier l'app buildée
+        if [ -d "build/Build/Products/Release/ILoveSkibidi V2.app" ]; then
+          cp -R "build/Build/Products/Release/ILoveSkibidi V2.app" dmg-content/
+        elif [ -d "build/Release/ILoveSkibidi V2.app" ]; then
+          cp -R "build/Release/ILoveSkibidi V2.app" dmg-content/
+        else
+          find build -name "*.app" -exec cp -R {} dmg-content/ \;
+        fi
+        
         # Créer le DMG
         hdiutil create -volname "ILoveSkibidi V2" \
-          -srcfolder "build/release/ILoveSkibidi V2.app" \
+          -srcfolder dmg-content \
           -ov \
           -format UDZO \
           "ILoveSkibidiV2-$(date +%Y%m%d-%H%M%S).dmg"
