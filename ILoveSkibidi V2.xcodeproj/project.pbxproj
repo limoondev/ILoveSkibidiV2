@@ -20,6 +20,8 @@
 		A10011 /* PremiumComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10011; };
 		A10012 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10012; };
 		A10013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10013; };
+		A10014 /* ClipboardHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10014; };
+		A10015 /* ShortcutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10015; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		B10011 /* PremiumComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumComponents.swift; sourceTree = "<group>"; };
 		B10012 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		B10013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B10014 /* ClipboardHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardHistoryView.swift; sourceTree = "<group>"; };
+		B10015 /* ShortcutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -78,6 +82,8 @@
 				B10005 /* NotabilityImportView.swift */,
 				B10006 /* ScannerView.swift */,
 				B10007 /* SettingsView.swift */,
+				B10014 /* ClipboardHistoryView.swift */,
+				B10015 /* ShortcutsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +195,8 @@
 				A10010 /* ScannerService.swift in Sources */,
 				A10011 /* PremiumComponents.swift in Sources */,
 				A10012 /* Color+Theme.swift in Sources */,
+				A10014 /* ClipboardHistoryView.swift in Sources */,
+				A10015 /* ShortcutsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};

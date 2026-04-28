@@ -3,12 +3,15 @@ import SwiftUI
 struct MainView: View {
     @State private var selectedTab: Tab = .correction
     @State private var sidebarHover: Tab? = nil
+    @State private var isAnimating = false
     
     enum Tab: String, CaseIterable {
         case correction = "Correction"
         case notability = "Notability"
         case scanner = "Scanner"
         case settings = "Réglages"
+        case clipboard = "Presse-papier"
+        case shortcuts = "Raccourcis"
         
         var icon: String {
             switch self {
@@ -16,6 +19,8 @@ struct MainView: View {
             case .notability: return "square.and.arrow.down"
             case .scanner: return "doc.text.viewfinder"
             case .settings: return "gearshape.fill"
+            case .clipboard: return "doc.on.clipboard"
+            case .shortcuts: return "keyboard"
             }
         }
         
@@ -25,6 +30,8 @@ struct MainView: View {
             case .notability: return .appAccent
             case .scanner: return .appSuccess
             case .settings: return .appTextSecondary
+            case .clipboard: return .purple
+            case .shortcuts: return .orange
             }
         }
         
@@ -34,6 +41,8 @@ struct MainView: View {
             case .notability: return "Import automatique Notability"
             case .scanner: return "Scanner & amélioration"
             case .settings: return "Préférences de l'app"
+            case .clipboard: return "Historique du presse-papier"
+            case .shortcuts: return "Raccourcis clavier personnalisés"
             }
         }
     }
@@ -41,15 +50,22 @@ struct MainView: View {
     var body: some View {
         HStack(spacing: 0) {
             sidebar
-                .frame(width: 260)
+                .frame(width: 280)
+                .animation(.easeInOut(duration: 0.3), value: selectedTab)
             
             Divider()
                 .overlay(Color.appBorder)
             
             contentArea
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity), removal: .move(edge: .trailing).combined(with: .opacity)))
         }
         .background(Color.appBackground)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.5).delay(0.2)) {
+                isAnimating = true
+            }
+        }
     }
     
     private var sidebar: some View {
@@ -147,8 +163,13 @@ struct MainView: View {
                 ScannerView()
             case .settings:
                 SettingsView()
+            case .clipboard:
+                ClipboardHistoryView()
+            case .shortcuts:
+                ShortcutsView()
             }
         }
+        .animation(.easeInOut(duration: 0.3), value: selectedTab)
     }
 }
 

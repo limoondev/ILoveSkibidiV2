@@ -7,11 +7,15 @@ struct NotabilityImportView: View {
     @State private var selectedFiles: [URL] = []
     @State private var showSuccess = false
     @State private var successMessage = ""
+    @State private var showAdvancedOptions = false
+    @State private var autoConvertImages = true
+    @State private var compressPDFs = false
+    @State private var preserveMetadata = true
     
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                SectionHeader(title: "Import Notability", icon: "square.and.arrow.down", subtitle: "Importez automatiquement vos fichiers dans Notability")
+                headerSection
                 
                 GlassCard {
                     VStack(spacing: 16) {
@@ -37,6 +41,30 @@ struct NotabilityImportView: View {
                                     .foregroundColor(.appTextSecondary)
                             }
                             Spacer()
+                        }
+                        
+                        Divider().overlay(Color.appBorder)
+                        
+                        VStack(spacing: 12) {
+                            HStack {
+                                Text("Options avancées")
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .foregroundColor(.appTextPrimary)
+                                Spacer()
+                                Button(action: { withAnimation { showAdvancedOptions.toggle() } }) {
+                                    Image(systemName: showAdvancedOptions ? "chevron.up" : "chevron.down")
+                                        .font(.system(size: 12, weight: .semibold))
+                                        .foregroundColor(.appAccent)
+                                }
+                            }
+                            
+                            if showAdvancedOptions {
+                                VStack(spacing: 12) {
+                                    importOptionToggle(icon: "photo", title: "Conversion automatique d'images", subtitle: "Convertir les images en PNG optimisés", isOn: $autoConvertImages)
+                                    importOptionToggle(icon: "doc.compress", title: "Compression des PDF", subtitle: "Réduire la taille des fichiers PDF", isOn: $compressPDFs)
+                                    importOptionToggle(icon: "info.circle", title: "Préserver les métadonnées", subtitle: "Conserver les informations du fichier", isOn: $preserveMetadata)
+                                }
+                            }
                         }
                     }
                 }
@@ -198,5 +226,61 @@ struct NotabilityImportView: View {
         formatter.timeStyle = .short
         formatter.locale = Locale(identifier: "fr_FR")
         return formatter.string(from: date)
+    }
+    
+    private var headerSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                ZStack {
+                    Circle()
+                        .fill(LinearGradient(
+                            colors: [.appAccent, .blue],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ))
+                        .frame(width: 50, height: 50)
+                        .shadow(color: .appAccent.opacity(0.3), radius: 8, x: 0, y: 4)
+                    Image(systemName: "square.and.arrow.down")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.white)
+                }
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Import Notability")
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundStyle(LinearGradient(
+                            colors: [.appAccent, .blue],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        ))
+                    Text("Importez automatiquement vos fichiers dans Notability")
+                        .font(.system(size: 14))
+                        .foregroundColor(.appTextSecondary)
+                }
+                
+                Spacer()
+                
+                StatusBadge(text: "V2.0", color: .appAccent)
+            }
+        }
+    }
+    
+    private func importOptionToggle(icon: String, title: String, subtitle: String, isOn: Binding<Bool>) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: icon)
+                .font(.system(size: 16))
+                .foregroundColor(.appAccent)
+                .frame(width: 24)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: 13, weight: .medium, design: .rounded))
+                    .foregroundColor(.appTextPrimary)
+                Text(subtitle)
+                    .font(.system(size: 11))
+                    .foregroundColor(.appTextSecondary)
+            }
+            Spacer()
+            ToggleSwitch(isOn: isOn)
+        }
     }
 }

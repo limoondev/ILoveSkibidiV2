@@ -4,11 +4,47 @@ struct ScannerView: View {
     @StateObject private var service = ScannerService.shared
     @State private var showImagePreview = false
     @State private var isCapturing = false
+    @State private var selectedFilter: ScannerFilter = .none
+    @State private var showAdvancedFilters = false
+    
+    enum ScannerFilter: String, CaseIterable {
+        case none = "Aucun"
+        case grayscale = "Niveau de gris"
+        case sepia = "Sépia"
+        case vintage = "Vintage"
+        case blackAndWhite = "Noir et blanc"
+        case cool = "Froid"
+        case warm = "Chaud"
+        
+        var icon: String {
+            switch self {
+            case .none: return "photo"
+            case .grayscale: return "circle.lefthalf.filled"
+            case .sepia: return "paintpalette"
+            case .vintage: return "camera.aperture"
+            case .blackAndWhite: return "circle"
+            case .cool: return "snow"
+            case .warm: return "sun.max.fill"
+            }
+        }
+        
+        var color: Color {
+            switch self {
+            case .none: return .gray
+            case .grayscale: return .black
+            case .sepia: return .orange
+            case .vintage: return .brown
+            case .blackAndWhite: return .black
+            case .cool: return .blue
+            case .warm: return .yellow
+            }
+        }
+    }
     
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                SectionHeader(title: "Scanner de documents", icon: "doc.text.viewfinder", subtitle: "Scannez et améliorez vos documents avec l'appareil photo")
+                headerSection
                 
                 GlassCard {
                     VStack(spacing: 16) {
@@ -72,6 +108,20 @@ struct ScannerView: View {
                                         NotabilityImportService.shared.importToNotability(url: tempURL)
                                     }
                                 }
+                                
+                                Button(action: {
+                                    service.copyToClipboard(processedImage)
+                                }) {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.appSurfaceLight)
+                                            .frame(width: 44, height: 44)
+                                        Image(systemName: "doc.on.doc")
+                                            .font(.system(size: 16, weight: .semibold))
+                                            .foregroundColor(.appPrimary)
+                                    }
+                                }
+                                .buttonStyle(ScaleButtonStyle())
                             }
                         }
                     }
@@ -96,6 +146,49 @@ struct ScannerView: View {
                         
                         Divider().overlay(Color.appBorder)
                         
+                        VStack(spacing: 12) {
+                            HStack {
+                                Text("Filtres")
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .foregroundColor(.appTextPrimary)
+                                Spacer()
+                                Button(action: { withAnimation { showAdvancedFilters.toggle() } }) {
+                                    Image(systemName: showAdvancedFilters ? "chevron.up" : "chevron.down")
+                                        .font(.system(size: 12, weight: .semibold))
+                                        .foregroundColor(.appSuccess)
+                                }
+                            }
+                            
+                            if showAdvancedFilters {
+                                LazyVGrid(columns: [
+                                    GridItem(.flexible()),
+                                    GridItem(.flexible()),
+                                    GridItem(.flexible()),
+                                    GridItem(.flexible())
+                                ], spacing: 10) {
+                                    ForEach(ScannerFilter.allCases, id: \.self) { filter in
+                                        FilterButton(
+                                            filter: filter,
+                                            isSelected: selectedFilter == filter,
+                                            action: { selectedFilter = filter }
+                                        )
+                                    }
+                                }
+                            } else {
+                                HStack(spacing: 10) {
+                                    ForEach([ScannerFilter.none, .grayscale, .sepia, .blackAndWhite], id: \.self) { filter in
+                                        FilterButton(
+                                            filter: filter,
+                                            isSelected: selectedFilter == filter,
+                                            action: { selectedFilter = filter }
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                        
+                        Divider().overlay(Color.appBorder)
+                        
                         VStack(spacing: 16) {
                             ScannerSlider(value: $service.brightness, range: -1...1, label: "Luminosité", icon: "sun.max.fill", color: .appWarning)
                             ScannerSlider(value: $service.contrast, range: 0.5...3, label: "Contraste", icon: "circle.lefthalf.filled", color: .appPrimary)
@@ -108,29 +201,85 @@ struct ScannerView: View {
                         }
                     }
                 }
-                
+            }
+            
+            if showImagePreview, let processedImage = service.processedImage {
                 GlassCard {
-                    VStack(spacing: 12) {
-                        SectionHeader(title: "Mode document", icon: "doc.text.fill")
+                    VStack(spacing: 16) {
+                        SectionHeader(title: "Aperçu du scan", icon: "eye")
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.appSurfaceLight)
+                                .frame(height: 300)
+                            
+                            Image(nsImage: processedImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxHeight: 280)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .shadow(radius: 8)
+                        }
                         
                         HStack(spacing: 12) {
-                            ForEach(ScannerService.DocumentMode.allCases, id: \.self) { mode in
-                                ScannerModeButton(
-                                    mode: mode,
-                                    isSelected: service.documentMode == mode
-                                ) {
-                                    service.documentMode = mode
+                            PremiumButton(title: "Exporter", icon: "square.and.arrow.up", style: .success) {
+                                service.exportImage(processedImage)
+                            }
+                            
+                            PremiumButton(title: "Import Notability", icon: "square.and.arrow.down", style: .secondary) {
+                                // Export temp then import
+                                let tempDir = FileManager.default.temporaryDirectory
+                                let tempURL = tempDir.appendingPathComponent("scan_\(Int(Date().timeIntervalSince1970)).png")
+                                if let tiffData = processedImage.tiffRepresentation,
+                                   let bitmap = NSBitmapImageRep(data: tiffData),
+                                   let pngData = bitmap.representation(using: .png, properties: [:]) {
+                                    try? pngData.write(to: tempURL)
+                                    NotabilityImportService.shared.importToNotability(url: tempURL)
                                 }
                             }
+                            
+                            Button(action: {
+                                service.copyToClipboard(processedImage)
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.appSurfaceLight)
+                                        .frame(width: 44, height: 44)
+                                    Image(systemName: "doc.on.doc")
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundColor(.appPrimary)
+                                }
+                            }
+                            .buttonStyle(ScaleButtonStyle())
                         }
                     }
                 }
-                
-                GlassCard {
-                    VStack(spacing: 8) {
-                        SectionHeader(title: "Historique des scans", icon: "clock.arrow.circlepath")
-                        
-                        if service.scanHistory.isEmpty {
+            }
+            
+            GlassCard {
+                VStack(spacing: 16) {
+                    SectionHeader(title: "Réglages d'image", icon: "slider.horizontal.3")
+                    
+                    HStack {
+                        ToggleSwitch(isOn: $service.autoEnhance, accentColor: .appSuccess)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Amélioration automatique")
+                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                                .foregroundColor(.appTextPrimary)
+                            Text("Ajuste automatiquement la clarté et le contraste")
+                                .font(.system(size: 11))
+                                .foregroundColor(.appTextSecondary)
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            
+            GlassCard {
+                VStack(spacing: 12) {
+                    SectionHeader(title: "Historique des scans", icon: "clock.arrow.circlepath")
+                    
+                    if service.scanHistory.isEmpty {
                             Text("Aucun scan pour le moment")
                                 .font(.system(size: 13))
                                 .foregroundColor(.appTextSecondary)
@@ -187,6 +336,79 @@ struct ScannerView: View {
         if let scanned = service.scannedImage {
             service.processedImage = service.processImage(scanned)
         }
+    }
+    
+    private var headerSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                ZStack {
+                    Circle()
+                        .fill(LinearGradient(
+                            colors: [.appSuccess, .teal],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ))
+                        .frame(width: 50, height: 50)
+                        .shadow(color: .appSuccess.opacity(0.3), radius: 8, x: 0, y: 4)
+                    Image(systemName: "doc.text.viewfinder")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.white)
+                }
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Scanner de documents")
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundStyle(LinearGradient(
+                            colors: [.appSuccess, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        ))
+                    Text("Scannez et améliorez vos documents avec l'appareil photo")
+                        .font(.system(size: 14))
+                        .foregroundColor(.appTextSecondary)
+                }
+                
+                Spacer()
+                
+                StatusBadge(text: "V2.0", color: .appSuccess)
+            }
+        }
+    }
+}
+
+struct FilterButton: View {
+    let filter: ScannerView.ScannerFilter
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 6) {
+                ZStack {
+                    Circle()
+                        .fill(isSelected ? filter.color.opacity(0.2) : Color.appSurfaceLight.opacity(0.5))
+                        .frame(width: 36, height: 36)
+                    Image(systemName: filter.icon)
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(isSelected ? filter.color : .appTextSecondary)
+                }
+                Text(filter.rawValue)
+                    .font(.system(size: 10, weight: isSelected ? .semibold : .medium))
+                    .foregroundColor(isSelected ? .appTextPrimary : .appTextSecondary)
+                    .lineLimit(1)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(isSelected ? filter.color.opacity(0.1) : Color.clear)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(isSelected ? filter.color : Color.appBorder.opacity(0.3), lineWidth: isSelected ? 1.5 : 1)
+                    )
+            )
+        }
+        .buttonStyle(ScaleButtonStyle())
     }
 }
 
