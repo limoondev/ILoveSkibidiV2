@@ -320,24 +320,7 @@ class AdvancedScannerService: ObservableObject {
         }
     }
     
-    private func createPDF(from image: NSImage, to url: URL) {
-        let pdfData = NSMutableData()
-        
-        guard let pdfPage = PDFPage(image: image) else { return }
-        
-        if let consumer = CGDataConsumer(data: pdfData as CFMutableData),
-           let context = CGContext(consumer: consumer, mediaBox: nil, nil) {
-            let mediaBox = pdfPage.bounds(for: .cropBox)
-            context.beginPDFPage(mediaBox as CFDictionary)
-            context.endPDFPage()
-        }
-        
-        try? pdfData.write(to: url)
-    }
-    
     private func saveAsPDF(_ image: NSImage, to url: URL) {
-        let pdfData = NSMutableData()
-        
         guard let pdfPage = PDFPage(image: image) else { return }
         let pdfDocument = PDFDocument()
         pdfDocument.insert(pdfPage, at: 0)
