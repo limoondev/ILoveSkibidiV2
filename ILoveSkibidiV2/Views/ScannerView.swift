@@ -324,12 +324,12 @@ struct ScannerView: View {
                 }
             }
             .padding(24)
+            .onChange(of: service.brightness) { _ in reprocessImage() }
+            .onChange(of: service.contrast) { _ in reprocessImage() }
+            .onChange(of: service.saturation) { _ in reprocessImage() }
+            .onChange(of: service.sharpness) { _ in reprocessImage() }
+            .onChange(of: service.documentMode) { _ in reprocessImage() }
         }
-        .onChange(of: service.brightness) { _ in reprocessImage() }
-        .onChange(of: service.contrast) { _ in reprocessImage() }
-        .onChange(of: service.saturation) { _ in reprocessImage() }
-        .onChange(of: service.sharpness) { _ in reprocessImage() }
-        .onChange(of: service.documentMode) { _ in reprocessImage() }
     }
     
     private func reprocessImage() {
