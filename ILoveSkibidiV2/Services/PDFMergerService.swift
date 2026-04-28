@@ -39,7 +39,7 @@ class PDFMergerService: ObservableObject {
             }
         }
         
-        if let data = mergedDocument.dataRepresentation {
+        if let data = mergedDocument.dataRepresentation() {
             do {
                 try data.write(to: destinationURL)
                 return true

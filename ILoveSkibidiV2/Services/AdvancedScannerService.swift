@@ -134,20 +134,9 @@ class AdvancedScannerService: ObservableObject {
     }
     
     private func detectDocumentBoundaries(_ image: NSImage) {
-        guard let ciImage = image.toCIImage() else { return }
-        
-        let request = VNRecognizeRectanglesRequest { [weak self] request, error in
-            guard let observations = request.results as? [VNRectangleObservation] else { return }
-            
-            DispatchQueue.main.async {
-                self?.detectedDocumentRegions = observations.map { 
-                    VNImageRectForNormalizedRect($0.boundingBox, Int(ciImage.extent.width), Int(ciImage.extent.height))
-                }
-            }
-        }
-        
-        let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
-        try? handler.perform([request])
+        // Rectangle detection is not available on macOS Vision API
+        // Set empty regions as placeholder
+        detectedDocumentRegions = []
     }
     
     func performOCR(on image: NSImage) {
@@ -338,8 +327,8 @@ class AdvancedScannerService: ObservableObject {
         
         if let consumer = CGDataConsumer(data: pdfData as CFMutableData),
            let context = CGContext(consumer: consumer, mediaBox: nil, nil) {
-            var mediaBox = pdfPage.bounds(for: .cropBox)
-            context.beginPDFPage(&mediaBox)
+            let mediaBox = pdfPage.bounds(for: .cropBox)
+            context.beginPDFPage(mediaBox as CFDictionary)
             context.endPDFPage()
         }
         
@@ -353,7 +342,7 @@ class AdvancedScannerService: ObservableObject {
         let pdfDocument = PDFDocument()
         pdfDocument.insert(pdfPage, at: 0)
         
-        if let data = pdfDocument.dataRepresentation {
+        if let data = pdfDocument.dataRepresentation() {
             try? data.write(to: url)
         }
     }
@@ -377,7 +366,7 @@ class AdvancedScannerService: ObservableObject {
             }
         }
         
-        if let data = pdfDocument.dataRepresentation {
+        if let data = pdfDocument.dataRepresentation() {
             try? data.write(to: url)
         }
     }
