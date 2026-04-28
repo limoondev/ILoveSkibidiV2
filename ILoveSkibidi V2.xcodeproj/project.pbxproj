@@ -38,10 +38,15 @@
 		A10029 /* FileOrganizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10029; };
 		A10030 /* TaskManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10030; };
 		A10031 /* CorrectionMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10031; };
+		A10032 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10032; };
+		A10033 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10033; };
+		A10034 /* ILoveSkibidiShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C10002; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A10035 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10034; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C10001 /* ILoveSkibidi V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ILoveSkibidi V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10002 /* ILoveSkibidiShare.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = ILoveSkibidiShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10001 /* ILoveSkibidiV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILoveSkibidiV2App.swift; sourceTree = "<group>"; };
 		B10002 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
 		B10003 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -73,6 +78,9 @@
 		B10029 /* FileOrganizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileOrganizerView.swift; sourceTree = "<group>"; };
 		B10030 /* TaskManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerView.swift; sourceTree = "<group>"; };
 		B10031 /* CorrectionMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionMenuView.swift; sourceTree = "<group>"; };
+		B10032 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension/ShareViewController.swift; sourceTree = "<group>"; };
+		B10033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ShareExtension/Info.plist; sourceTree = "<group>"; };
+		B10034 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareExtension/MainInterface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -88,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				C10001 /* ILoveSkibidi V2.app */,
+				C10002 /* ILoveSkibidiShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +109,7 @@
 				D10004 /* Services */,
 				D10005 /* Components */,
 				D10006 /* Extensions */,
+				D10007 /* ShareExtension */,
 				B10013 /* Assets.xcassets */,
 			);
 			path = ILoveSkibidiV2;
@@ -162,6 +172,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D10007 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				B10032 /* ShareViewController.swift */,
+				B10033 /* Info.plist */,
+				B10034 /* MainInterface.storyboard */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,15 +191,33 @@
 			buildPhases = (
 				E10002 /* Sources */,
 				E10003 /* Resources */,
+				E10004 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E10005 /* PBXTargetDependency */,
 			);
 			name = "ILoveSkibidi V2";
 			productName = "ILoveSkibidi V2";
 			productReference = C10001 /* ILoveSkibidi V2.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E10006 /* ILoveSkibidiShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10004 /* Build configuration list for PBXNativeTarget "ILoveSkibidiShare" */;
+			buildPhases = (
+				E10007 /* Sources */,
+				E10008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ILoveSkibidiShare;
+			productName = ILoveSkibidiShare;
+			productReference = C10002 /* ILoveSkibidiShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -211,6 +249,7 @@
 			projectRoot = "";
 			targets = (
 				E10001 /* ILoveSkibidi V2 */,
+				E10006 /* ILoveSkibidiShare */,
 			);
 		};
 /* End PBXProject section */
@@ -221,6 +260,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10013 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPosturing = 0;
+		};
+		E10008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10033 /* Info.plist in Resources */,
+				A10035 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};
@@ -264,7 +312,47 @@
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};
+		E10007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10032 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPosturing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E10004 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A10034 /* ILoveSkibidiShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPosturing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E10005 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E10006 /* ILoveSkibidiShare */;
+			targetProxy = E10009 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		E10009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = G10001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E10006 /* ILoveSkibidiShare */;
+			remoteInfo = ILoveSkibidiShare;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin XCBuildConfiguration section */
 		H10001 /* Debug */ = {
@@ -325,6 +413,106 @@
 			};
 			name = Release;
 		};
+		H10003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ILoveSkibidiV2/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iloveskibidi.v2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		H10004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ILoveSkibidiV2/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iloveskibidi.v2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		H10005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iloveskibidi.v2.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		H10006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iloveskibidi.v2.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -340,8 +528,17 @@
 		F10003 /* Build configuration list for PBXNativeTarget "ILoveSkibidi V2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				H10001 /* Debug */,
-				H10002 /* Release */,
+				H10003 /* Debug */,
+				H10004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F10004 /* Build configuration list for PBXNativeTarget "ILoveSkibidiShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				H10005 /* Debug */,
+				H10006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
