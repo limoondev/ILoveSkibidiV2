@@ -120,7 +120,7 @@
 /* Begin PBXNativeTarget section */
 		E10001 /* Mixky */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F10002 /* Build configuration list for PBXNativeTarget "Mixky" */;
+			buildConfigurationList = F10003 /* Build configuration list for PBXNativeTarget "Mixky" */;
 			buildPhases = (
 				E10002 /* Sources */,
 				E10003 /* Resources */,
