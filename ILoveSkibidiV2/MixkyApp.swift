@@ -2,32 +2,15 @@ import SwiftUI
 import AppKit
 
 @main
-struct ILoveSkibidiV2App: App {
-    @State private var isLoading = true
+struct MixkyApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                if isLoading {
-                    LoadingScreenView()
-                        .transition(.opacity)
-                } else {
-                    MainView()
-                        .transition(.opacity)
+            MainView()
+                .onOpenURL { url in
+                    handleIncomingURL(url)
                 }
-            }
-            .animation(.easeInOut(duration: 0.8), value: isLoading)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    withAnimation {
-                        isLoading = false
-                    }
-                }
-            }
-            .onOpenURL { url in
-                handleIncomingURL(url)
-            }
         }
         .windowStyle(.hiddenTitleBar)
         .windowToolbarStyle(.unified(showsTitle: false))
@@ -35,7 +18,7 @@ struct ILoveSkibidiV2App: App {
     }
     
     private func handleIncomingURL(_ url: URL) {
-        guard url.scheme == "iloveskibidi" else { return }
+        guard url.scheme == "mixky" else { return }
         
         if url.host == "import" {
             // Handle file import from share extension
@@ -43,7 +26,7 @@ struct ILoveSkibidiV2App: App {
                let fileURL = URL(string: urlString) {
                 // Process the imported file
                 print("Importing file from share extension: \(fileURL)")
-                // TODO: Navigate to appropriate view based on file type
+                NotabilityImportService.shared.importFile(from: fileURL)
             }
         }
     }
@@ -66,6 +49,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let response = alert.runModal()
             if response == .alertFirstButtonReturn {
                 NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
+            }
+        }
+        
+        // Start the background corrector if enabled
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if TextCorrectionService.shared.isEnabled {
+                TextCorrectionService.shared.startGlobalCorrection()
             }
         }
     }

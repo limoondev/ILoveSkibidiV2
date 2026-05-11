@@ -7,11 +7,11 @@
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
-    <string>com.iloveskibidi.v2</string>
+    <string>com.mixky.app</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>ILoveSkibidi V2</string>
+    <string>Mixky</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
@@ -26,24 +26,10 @@
     <string>NSApplication</string>
     <key>LSUIElement</key>
     <false/>
-    <key>NSCameraUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès à la caméra pour scanner des documents.</string>
     <key>NSAppleEventsUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès pour envoyer des documents vers Notability.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès au microphone pour la dictée vocale.</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>ILoveSkibidi V2 utilise la reconnaissance vocale pour transcrire votre parole en texte.</string>
+    <string>Mixky nécessite l'accès pour envoyer des documents vers Notability.</string>
     <key>NSAccessibilityUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès à l'accessibilité pour le correcteur orthographique global.</string>
-    <key>NSDocumentsFolderUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès au dossier Documents pour organiser vos fichiers.</string>
-    <key>NSDesktopFolderUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès au Bureau pour organiser vos fichiers.</string>
-    <key>NSDownloadsFolderUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès au dossier Téléchargements pour organiser vos fichiers.</string>
-    <key>NSCloudKitUsageDescription</key>
-    <string>ILoveSkibidi V2 utilise iCloud pour synchroniser vos notes et données.</string>
+    <string>Mixky nécessite l'accès à l'accessibilité pour le correcteur orthographique global.</string>
     <key>com.apple.security.app-sandbox</key>
     <false/>
     <key>NSSupportsAutomaticTermination</key>
@@ -58,14 +44,14 @@
     <array>
         <dict>
             <key>CFBundleURLName</key>
-            <string>com.iloveskibidi.v2.share</string>
+            <string>com.mixky.app.share</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>iloveskibidi</string>
+                <string>mixky</string>
             </array>
         </dict>
     </array>
     <key>NSAppleEventsUsageDescription</key>
-    <string>ILoveSkibidi V2 nécessite l'accès pour automatiser certaines tâches et communiquer avec d'autres applications.</string>
+    <string>Mixky nécessite l'accès pour automatiser certaines tâches et communiquer avec d'autres applications.</string>
 </dict>
 </plist>
