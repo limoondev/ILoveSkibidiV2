@@ -7,15 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10001 /* MixkyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10001; };
+		A10001 /* ILoveSkibidiV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10001; };
+		A10002 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10002; };
 		A10003 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10003; };
+		A10004 /* TextCorrectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10004; };
 		A10005 /* NotabilityImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10005; };
+		A10006 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10006; };
 		A10007 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10007; };
 		A10008 /* TextCorrectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10008; };
 		A10009 /* NotabilityImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10009; };
+		A10010 /* ScannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10010; };
 		A10011 /* PremiumComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10011; };
 		A10012 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10012; };
 		A10013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10013; };
+		A10014 /* ClipboardHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10014; };
+		A10015 /* ShortcutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10015; };
+		A10016 /* AdvancedScannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10016; };
+		A10017 /* QuickNotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10017; };
+		A10018 /* VoiceDictationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10018; };
+		A10019 /* PDFMergerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10019; };
+		A10020 /* ImageToTextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10020; };
+		A10021 /* FileOrganizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10021; };
+		A10022 /* TaskManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10022; };
+		A10023 /* NotabilitySyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10023; };
+		A10024 /* GlobalSpellCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10024; };
+		A10025 /* QuickNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10025; };
+		A10026 /* VoiceDictationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10026; };
+		A10027 /* PDFMergerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10027; };
+		A10028 /* ImageToTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10028; };
+		A10029 /* FileOrganizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10029; };
+		A10030 /* TaskManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10030; };
+		A10031 /* CorrectionMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10031; };
 		A10032 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10032; };
 		A10034 /* ILoveSkibidiShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C10002; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A10035 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10034; };
@@ -24,15 +46,37 @@
 /* Begin PBXFileReference section */
 		C10001 /* ILoveSkibidi V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ILoveSkibidi V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C10002 /* ILoveSkibidiShare.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = ILoveSkibidiShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		B10001 /* MixkyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixkyApp.swift; sourceTree = "<group>"; };
+		B10001 /* ILoveSkibidiV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILoveSkibidiV2App.swift; sourceTree = "<group>"; };
+		B10002 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
 		B10003 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B10004 /* TextCorrectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCorrectionView.swift; sourceTree = "<group>"; };
 		B10005 /* NotabilityImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportView.swift; sourceTree = "<group>"; };
+		B10006 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		B10007 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B10008 /* TextCorrectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCorrectionService.swift; sourceTree = "<group>"; };
 		B10009 /* NotabilityImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportService.swift; sourceTree = "<group>"; };
+		B10010 /* ScannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerService.swift; sourceTree = "<group>"; };
 		B10011 /* PremiumComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumComponents.swift; sourceTree = "<group>"; };
-		B10012 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color+Theme.swift; sourceTree = "<group>"; };
+		B10012 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		B10013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B10014 /* ClipboardHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardHistoryView.swift; sourceTree = "<group>"; };
+		B10015 /* ShortcutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsView.swift; sourceTree = "<group>"; };
+		B10016 /* AdvancedScannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedScannerService.swift; sourceTree = "<group>"; };
+		B10017 /* QuickNotesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNotesService.swift; sourceTree = "<group>"; };
+		B10018 /* VoiceDictationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDictationService.swift; sourceTree = "<group>"; };
+		B10019 /* PDFMergerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFMergerService.swift; sourceTree = "<group>"; };
+		B10020 /* ImageToTextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToTextService.swift; sourceTree = "<group>"; };
+		B10021 /* FileOrganizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileOrganizerService.swift; sourceTree = "<group>"; };
+		B10022 /* TaskManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerService.swift; sourceTree = "<group>"; };
+		B10023 /* NotabilitySyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilitySyncService.swift; sourceTree = "<group>"; };
+		B10024 /* GlobalSpellCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSpellCheckerService.swift; sourceTree = "<group>"; };
+		B10025 /* QuickNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNotesView.swift; sourceTree = "<group>"; };
+		B10026 /* VoiceDictationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDictationView.swift; sourceTree = "<group>"; };
+		B10027 /* PDFMergerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFMergerView.swift; sourceTree = "<group>"; };
+		B10028 /* ImageToTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToTextView.swift; sourceTree = "<group>"; };
+		B10029 /* FileOrganizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileOrganizerView.swift; sourceTree = "<group>"; };
+		B10030 /* TaskManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerView.swift; sourceTree = "<group>"; };
+		B10031 /* CorrectionMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionMenuView.swift; sourceTree = "<group>"; };
 		B10032 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		B10033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B10034 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
@@ -59,7 +103,7 @@
 		D10002 /* ILoveSkibidiV2 */ = {
 			isa = PBXGroup;
 			children = (
-				B10001 /* MixkyApp.swift */,
+				B10001 /* ILoveSkibidiV2App.swift */,
 				D10003 /* Views */,
 				D10004 /* Services */,
 				D10005 /* Components */,
@@ -73,9 +117,21 @@
 		D10003 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B10002 /* LoadingScreenView.swift */,
 				B10003 /* MainView.swift */,
+				B10004 /* TextCorrectionView.swift */,
 				B10005 /* NotabilityImportView.swift */,
+				B10006 /* ScannerView.swift */,
 				B10007 /* SettingsView.swift */,
+				B10014 /* ClipboardHistoryView.swift */,
+				B10015 /* ShortcutsView.swift */,
+				B10025 /* QuickNotesView.swift */,
+				B10026 /* VoiceDictationView.swift */,
+				B10027 /* PDFMergerView.swift */,
+				B10028 /* ImageToTextView.swift */,
+				B10029 /* FileOrganizerView.swift */,
+				B10030 /* TaskManagerView.swift */,
+				B10031 /* CorrectionMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -85,6 +141,16 @@
 			children = (
 				B10008 /* TextCorrectionService.swift */,
 				B10009 /* NotabilityImportService.swift */,
+				B10010 /* ScannerService.swift */,
+				B10016 /* AdvancedScannerService.swift */,
+				B10017 /* QuickNotesService.swift */,
+				B10018 /* VoiceDictationService.swift */,
+				B10019 /* PDFMergerService.swift */,
+				B10020 /* ImageToTextService.swift */,
+				B10021 /* FileOrganizerService.swift */,
+				B10022 /* TaskManagerService.swift */,
+				B10023 /* NotabilitySyncService.swift */,
+				B10024 /* GlobalSpellCheckerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -211,14 +277,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10001 /* MixkyApp.swift in Sources */,
+				A10001 /* ILoveSkibidiV2App.swift in Sources */,
+				A10002 /* LoadingScreenView.swift in Sources */,
 				A10003 /* MainView.swift in Sources */,
+				A10004 /* TextCorrectionView.swift in Sources */,
 				A10005 /* NotabilityImportView.swift in Sources */,
+				A10006 /* ScannerView.swift in Sources */,
 				A10007 /* SettingsView.swift in Sources */,
 				A10008 /* TextCorrectionService.swift in Sources */,
 				A10009 /* NotabilityImportService.swift in Sources */,
+				A10010 /* ScannerService.swift in Sources */,
 				A10011 /* PremiumComponents.swift in Sources */,
 				A10012 /* Color+Theme.swift in Sources */,
+				A10014 /* ClipboardHistoryView.swift in Sources */,
+				A10015 /* ShortcutsView.swift in Sources */,
+				A10016 /* AdvancedScannerService.swift in Sources */,
+				A10017 /* QuickNotesService.swift in Sources */,
+				A10018 /* VoiceDictationService.swift in Sources */,
+				A10019 /* PDFMergerService.swift in Sources */,
+				A10020 /* ImageToTextService.swift in Sources */,
+				A10021 /* FileOrganizerService.swift in Sources */,
+				A10022 /* TaskManagerService.swift in Sources */,
+				A10023 /* NotabilitySyncService.swift in Sources */,
+				A10024 /* GlobalSpellCheckerService.swift in Sources */,
+				A10025 /* QuickNotesView.swift in Sources */,
+				A10026 /* VoiceDictationView.swift in Sources */,
+				A10027 /* PDFMergerView.swift in Sources */,
+				A10028 /* ImageToTextView.swift in Sources */,
+				A10029 /* FileOrganizerView.swift in Sources */,
+				A10030 /* TaskManagerView.swift in Sources */,
+				A10031 /* CorrectionMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};
