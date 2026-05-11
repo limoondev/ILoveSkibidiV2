@@ -23,7 +23,7 @@ jobs:
     - name: Build with xcodebuild
       run: |
         xcodebuild -project "ILoveSkibidi V2.xcodeproj" \
-          -scheme "ILoveSkibidi V2" \
+          -target "Mixky" \
           -configuration Release \
           -derivedDataPath build \
           CODE_SIGN_IDENTITY="" \
@@ -37,25 +37,25 @@ jobs:
         mkdir -p dmg-content
         
         # Copier l'app buildée
-        if [ -d "build/Build/Products/Release/ILoveSkibidi V2.app" ]; then
-          cp -R "build/Build/Products/Release/ILoveSkibidi V2.app" dmg-content/
-        elif [ -d "build/Release/ILoveSkibidi V2.app" ]; then
-          cp -R "build/Release/ILoveSkibidi V2.app" dmg-content/
+        if [ -d "build/Build/Products/Release/Mixky.app" ]; then
+          cp -R "build/Build/Products/Release/Mixky.app" dmg-content/
+        elif [ -d "build/Release/Mixky.app" ]; then
+          cp -R "build/Release/Mixky.app" dmg-content/
         else
           find build -name "*.app" -exec cp -R {} dmg-content/ \;
         fi
         
         # Créer le DMG
-        hdiutil create -volname "ILoveSkibidi V2" \
+        hdiutil create -volname "Mixky" \
           -srcfolder dmg-content \
           -ov \
           -format UDZO \
-          "ILoveSkibidiV2-$(date +%Y%m%d-%H%M%S).dmg"
+          "Mixky-$(date +%Y%m%d-%H%M%S).dmg"
           
     - name: Upload DMG artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ILoveSkibidiV2-DMG
+        name: Mixky-DMG
         path: "*.dmg"
         retention-days: 30
         
