@@ -7,110 +7,110 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10001 = {isa = PBXBuildFile; fileRef = B10001; };
-		A10003 = {isa = PBXBuildFile; fileRef = B10003; };
-		A10005 = {isa = PBXBuildFile; fileRef = B10005; };
-		A10007 = {isa = PBXBuildFile; fileRef = B10007; };
-		A10008 = {isa = PBXBuildFile; fileRef = B10008; };
-		A10009 = {isa = PBXBuildFile; fileRef = B10009; };
-		A10011 = {isa = PBXBuildFile; fileRef = B10011; };
-		A10012 = {isa = PBXBuildFile; fileRef = B10012; };
-		A10013 = {isa = PBXBuildFile; fileRef = B10013; };
-		A10032 = {isa = PBXBuildFile; fileRef = B10032; };
-		A10034 = {isa = PBXBuildFile; fileRef = C10002; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A10035 = {isa = PBXBuildFile; fileRef = B10034; };
+		A10001 /* MixkyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10001; };
+		A10003 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10003; };
+		A10005 /* NotabilityImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10005; };
+		A10007 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10007; };
+		A10008 /* TextCorrectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10008; };
+		A10009 /* NotabilityImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10009; };
+		A10011 /* PremiumComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10011; };
+		A10012 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10012; };
+		A10013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10013; };
+		A10032 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10032; };
+		A10034 /* MixkyShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C10002; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A10035 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10034; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C10001 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixky.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C10002 = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = MixkyShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		B10001 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixkyApp.swift; sourceTree = "<group>"; };
-		B10003 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		B10005 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportView.swift; sourceTree = "<group>"; };
-		B10007 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		B10008 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCorrectionService.swift; sourceTree = "<group>"; };
-		B10009 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportService.swift; sourceTree = "<group>"; };
-		B10011 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumComponents.swift; sourceTree = "<group>"; };
-		B10012 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color+Theme.swift; sourceTree = "<group>"; };
-		B10013 = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B10032 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		B10033 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B10034 = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		C10001 /* Mixky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixky.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10002 /* MixkyShare.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = MixkyShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10001 /* MixkyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixkyApp.swift; sourceTree = "<group>"; };
+		B10003 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B10005 /* NotabilityImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportView.swift; sourceTree = "<group>"; };
+		B10007 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B10008 /* TextCorrectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCorrectionService.swift; sourceTree = "<group>"; };
+		B10009 /* NotabilityImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotabilityImportService.swift; sourceTree = "<group>"; };
+		B10011 /* PremiumComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumComponents.swift; sourceTree = "<group>"; };
+		B10012 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color+Theme.swift; sourceTree = "<group>"; };
+		B10013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B10032 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		B10033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B10034 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		D10001 = {
 			isa = PBXGroup;
 			children = (
-				D10002,
-				D10010,
+				D10002 /* ILoveSkibidiV2 */,
+				D10010 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D10010 = {
+		D10010 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C10001,
-				C10002,
+				C10001 /* Mixky.app */,
+				C10002 /* MixkyShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D10002 = {
+		D10002 /* ILoveSkibidiV2 */ = {
 			isa = PBXGroup;
 			children = (
-				B10001,
-				D10003,
-				D10004,
-				D10005,
-				D10006,
-				D10007,
-				B10013,
+				B10001 /* MixkyApp.swift */,
+				D10003 /* Views */,
+				D10004 /* Services */,
+				D10005 /* Components */,
+				D10006 /* Extensions */,
+				D10007 /* ShareExtension */,
+				B10013 /* Assets.xcassets */,
 			);
 			path = ILoveSkibidiV2;
 			sourceTree = "<group>";
 		};
-		D10003 = {
+		D10003 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B10003,
-				B10005,
-				B10007,
+				B10003 /* MainView.swift */,
+				B10005 /* NotabilityImportView.swift */,
+				B10007 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D10004 = {
+		D10004 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B10008,
-				B10009,
+				B10008 /* TextCorrectionService.swift */,
+				B10009 /* NotabilityImportService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		D10005 = {
+		D10005 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B10011,
+				B10011 /* PremiumComponents.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		D10006 = {
+		D10006 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B10012,
+				B10012 /* Color+Theme.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D10007 = {
+		D10007 /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				B10032,
-				B10033,
-				B10034,
+				B10032 /* ShareViewController.swift */,
+				B10033 /* Info.plist */,
+				B10034 /* MainInterface.storyboard */,
 			);
 			path = ShareExtension;
 			sourceTree = "<group>";
@@ -118,30 +118,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E10001 = {
+		E10001 /* Mixky */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F10003;
+			buildConfigurationList = F10003 /* Build configuration list for PBXNativeTarget "Mixky" */;
 			buildPhases = (
-				E10002,
-				E10003,
-				E10004,
+				E10002 /* Sources */,
+				E10003 /* Resources */,
+				E10004 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E10005,
+				E10005 /* PBXTargetDependency */,
 			);
 			name = Mixky;
 			productName = Mixky;
-			productReference = C10001;
+			productReference = C10001 /* Mixky.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E10006 = {
+		E10006 /* MixkyShare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F10004;
+			buildConfigurationList = F10004 /* Build configuration list for PBXNativeTarget "MixkyShare" */;
 			buildPhases = (
-				E10007,
-				E10008,
+				E10007 /* Sources */,
+				E10008 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -149,13 +149,13 @@
 			);
 			name = MixkyShare;
 			productName = MixkyShare;
-			productReference = C10002;
+			productReference = C10002 /* MixkyShare.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		G10001 = {
+		G10001 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
@@ -167,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F10001;
+			buildConfigurationList = F10001 /* Build configuration list for PBXProject "Mixky" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = "fr";
 			hasScannedForEncodings = 0;
@@ -177,69 +177,69 @@
 				Base,
 			);
 			mainGroup = D10001;
-			productRefGroup = D10010;
+			productRefGroup = D10010 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E10001,
-				E10006,
+				E10001 /* Mixky */,
+				E10006 /* MixkyShare */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E10003 = {
+		E10003 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10013,
+				A10013 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};
-		E10008 = {
+		E10008 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10035,
+				A10035 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E10002 = {
+		E10002 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10001,
-				A10003,
-				A10005,
-				A10007,
-				A10008,
-				A10009,
-				A10011,
-				A10012,
+				A10001 /* MixkyApp.swift in Sources */,
+				A10003 /* MainView.swift in Sources */,
+				A10005 /* NotabilityImportView.swift in Sources */,
+				A10007 /* SettingsView.swift in Sources */,
+				A10008 /* TextCorrectionService.swift in Sources */,
+				A10009 /* NotabilityImportService.swift in Sources */,
+				A10011 /* PremiumComponents.swift in Sources */,
+				A10012 /* Color+Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};
-		E10007 = {
+		E10007 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10032,
+				A10032 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPosturing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E10004 = {
+		E10004 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A10034,
+				A10034 /* MixkyShare.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPosturing = 0;
@@ -247,25 +247,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E10005 = {
+		E10005 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E10006;
-			targetProxy = E10009;
+			target = E10006 /* MixkyShare */;
+			targetProxy = E10009 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXContainerItemProxy section */
-		E10009 = {
+		E10009 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = G10001;
+			containerPortal = G10001 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E10006;
+			remoteGlobalIDString = E10006 /* MixkyShare */;
 			remoteInfo = MixkyShare;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin XCBuildConfiguration section */
-		H10001 = {
+		H10001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -294,7 +294,7 @@
 			};
 			name = Debug;
 		};
-		H10002 = {
+		H10002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -323,7 +323,7 @@
 			};
 			name = Release;
 		};
-		H10003 = {
+		H10003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -352,7 +352,7 @@
 			};
 			name = Debug;
 		};
-		H10004 = {
+		H10004 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -381,7 +381,7 @@
 			};
 			name = Release;
 		};
-		H10005 = {
+		H10005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -402,7 +402,7 @@
 			};
 			name = Debug;
 		};
-		H10006 = {
+		H10006 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -426,34 +426,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F10001 = {
+		F10001 /* Build configuration list for PBXProject "Mixky" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				H10001,
-				H10002,
+				H10001 /* Debug */,
+				H10002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F10003 = {
+		F10003 /* Build configuration list for PBXNativeTarget "Mixky" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				H10003,
-				H10004,
+				H10003 /* Debug */,
+				H10004 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F10004 = {
+		F10004 /* Build configuration list for PBXNativeTarget "MixkyShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				H10005,
-				H10006,
+				H10005 /* Debug */,
+				H10006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = G10001;
+	rootObject = G10001 /* Project object */;
 }
